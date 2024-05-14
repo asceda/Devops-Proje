@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: nodejs-app:latest  # Yerel Docker Desktop'tan alınan imaj
+        imagePullPolicy: IfNotPresent  # Yerelde mevcutsa çekme
+        ports:
+        - containerPort: 3000
